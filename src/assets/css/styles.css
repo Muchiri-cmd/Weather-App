@@ -1,0 +1,530 @@
+:root{ 
+    --background: #131214;
+    --text-color: #EAE6F2;
+    --dark-grey: #1D1C1F;
+    --light-gray: #DDDAE5;
+    --light-gray-variant: #7B7980; 
+    --light-gray-variant-2: #B9B6BF;
+    --outline: #3E3D40;
+    --black-alpha: hsla(0, 0%, 0%, 0.1);
+}
+/*  ------------------ Reset ---------------------------------*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+li {
+    list-style: none;
+}
+a,img,span,input,button{
+    display:block;
+}
+a{
+    color:inherit;
+    text-decoration: none;
+}
+img{
+    height:auto;
+}
+input,button{
+    background:none;
+    border:none;
+    color:inherit;
+    font:inherit;
+}
+input{
+    width:100%;
+}
+button{
+    cursor:pointer;
+}
+sub{
+    vertical-align: baseline;
+}
+sup{
+    vertical-align: top;
+}
+sub,sup{
+    font-size:.8em;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    background-color: var(--background);
+    color:var(--text-color);
+    font-size: 18px;
+    overflow: hidden;
+}
+
+/* ---------------------------------- styles -------------------------- */
+@font-face{
+    font-family: 'Material Icon';
+    font-style:normal;
+    font-weight:400;
+    src:url(../fonts/material-symbol-rounded.woff2) format('woff');
+}
+.m-icon{
+    font-family:'Material Icon';
+    font-weight: normal;
+    font-style:normal;
+    font-size:2.5rem;
+    line-height:1;
+    text-transform: none;
+    white-space:nowrap;
+    word-wrap:normal;
+    direction: ltr;
+    height:1em;
+    width:1em;
+    overflow:hidden;
+}
+.container{
+    width:90%;
+    margin-inline:auto;
+    padding:1em;
+}
+.card {
+    background-color: var(--dark-grey);
+    color:var(--light-gray);   
+}
+.card-lg{
+    padding:20px; 
+}
+.card-sm{
+    padding:16px;
+}
+
+/* ----------------------------------- header -------------------------------*/
+.header .container{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+}
+.search{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    background-color: var(--dark-grey);
+    color:var(--light-gray);
+    z-index:4;
+}
+.search-container{
+    position: relative;
+    display: flex;
+    gap:1em;
+}
+.search-btn,
+.home-btn{
+    background:var(--light-gray-variant);
+    padding:.5em;
+    border-radius: 10px;
+}
+.search-input{
+    height:80px;
+    line-height:80px;
+    padding-inline:56px 16px;
+    outline:none;
+}
+.search-input::placeholder{
+    color:var(--light-gray-variant-2);
+}
+.search-container .search-icon {
+    position:absolute;
+    top:50%;
+    left:28px;
+    transform:translate(-50%,-50%);
+}
+.search-container > .m-icon{
+    display: none;
+}
+.search-container .icon-btn {
+    background-color:transparent;
+    box-shadow:none;
+}
+
+
+/* ------------------------------------- Main --------------------------------- */
+main{
+    overflow: hidden;
+}
+article.container{
+    position:relative;
+    display: grid;
+    grid-template-columns: minmax(0,1fr);
+    gap:20px;
+    height:100%;
+    overflow-y:auto;/*firefox*/
+    overflow-y:overlay;
+    
+}
+
+/* ----------------------------------content left--------------------------------*/
+.current-condition-card .wrapper{
+    margin-block:12px;
+    display:flex;
+    gap:8px;
+    align-items:center;
+}
+.current-condition-card .weather-icon{
+    margin-inline:auto;
+}
+.current-condition-card .details-list{
+    margin-block-start:16px;
+    padding-block-start:16px;
+    border-block-start:1px solid var(--outline);
+}
+.current-condition-card .detail-item{
+    display: flex;
+    align-items:center;
+    gap:8px;
+    margin:.5em;
+}
+.current-condition-card .detail-text{
+    color: var(--light-gray-variant);
+}
+.forecast-card :is(.card-item,.icon-wrapper){
+    display:flex;
+    align-items: center;
+}
+
+.forecast-card .forecast-details{
+    color:var(--light-gray-variant);
+}
+.forecast-card .card-item > .forecast-details{
+    width:100%;
+    text-align:right;
+}
+
+/* ----------------------------------content right--------------------------------*/
+.highlight-list{
+    display:grid;
+    gap:20px;
+}
+.highlights .card-sm{
+    background-color:var(--black-alpha);
+    position:relative;
+}
+.highlight-card :is(.wrapper,.card-list,.card-item){
+    display: flex;
+    align-items:center;
+}
+.highlight-card .wrapper{
+    justify-content: space-between;
+    gap:16px;
+}
+.highlight-card .card-list{
+    flex-wrap: wrap;
+    flex-grow: 1;
+    row-gap:8px;
+}
+.highlight-card .card-item{
+    width:50%;
+    justify-content:flex-end;
+    gap:4px;
+}
+
+/* ---------------------------------------------Hourly forecast -------------------------*/
+.slider-container{
+    overflow-x:auto;
+    margin-inline:-16px;
+}
+.slider-container::-webkit-scrollbar{
+    display: none;
+}
+.slider-list{
+    display:flex;
+    gap:12px;
+}
+.slider-list:first-child{
+    margin-block-end:16px;
+}
+.slider-list::before,
+.slider-list::after{
+    content:"";
+    min-width:4px;
+}
+.slider-item{
+    min-width:110px;
+    flex:1 1 100%;   
+}
+.slider-card{
+    text-align:center;
+}
+.slider-item .weather-icon{
+    margin-inline:auto;
+    margin-block:12px;
+}
+.footer,
+.footer .body-3:last-child{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+}
+.footer{
+    color:var(--light-gray-variant);
+    text-align:center;
+    gap:12px 24px;
+    margin-block-start:28px;
+}
+.api{
+    color:green;
+}
+.fade-in .footer{
+    display: flex;
+}
+.error{
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    height:100svh;
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+    display: none;
+    z-index:8;
+}
+
+/* --------------------------------- media queries -------------------------------- */
+
+
+@media screen and (min-width:768px){
+    .container{
+        padding:24px;
+    }
+    .card-lg{
+        padding:.5rem;
+    }
+    .card-sm{
+        padding:20px;
+        display: grid;
+        grid-template-rows: min-content 1fr;
+    }  
+    .search{
+        clip-path: circle(3% at calc(100% - 273px) 6%);
+    }
+    main{
+        height: calc(100vh -96px);
+        height:calc(100svh - 96px);
+    }
+    article.container{
+        padding-block-start: 0;
+        grid-template-columns: 280px minmax(0,1fr);
+        align-items:flex-start;
+        gap:24px;
+    }
+    .content-left{
+        position: sticky;
+        top:0;
+    }
+    .section:not(:last-child){
+        margin-block:20px;
+    }
+    .forecast-card .card-item:not(:last-child){
+        margin-block-end: 16px;
+    }
+    .highlight-list{
+        grid-template-columns: 1fr 1fr;
+    }
+    .highlight-card:nth-child(-n+2){
+        grid-column:span 2;
+        height:160px;
+    }
+    .highlight-card:nth-child(n+3){
+        height:120px;
+    }
+    .highlights .m-icon{
+        font-size:3.6rem;
+    }
+    .highlight-card.one .card-item{
+        width:25%;
+        flex-direction: column-reverse;
+        gap:8px;
+    }
+    .slider-container{
+        margin-inline:0 -24px;
+        border-bottom-left-radius:var(--radius-16);
+        border-top-left-radius:var(--radius-16);
+    }
+    .slider-list::before{
+        display: none;
+    }
+    .slider-list::after{
+        min-width:12px;
+    }
+    .hourly-forecast .card-sm{
+        padding:16px;
+    }
+    .search{
+        all:unset;
+        display:block;
+        position: relative;
+        width:500px;
+        animation:none;
+    }
+     .search-input{
+        height:56px;
+        border-radius: var(--radius-28);
+        border:2px solid var(--outline);
+    }
+
+    
+
+}
+
+@media screen and (min-width:1200px){
+    .container{
+        padding:3rem;
+    }
+    .card-lg{
+        padding:36px;
+    }
+    .card-sm{
+        padding:24px;
+    }    
+    .header .icon-btn{
+        display: none;
+    }
+    .logo img{
+        width:200px;
+    }
+    .header{
+        position: relative;
+        height:120px;
+        z-index:4;
+    }
+    .header .container{
+        padding-block:0;
+        height:100%;
+    }
+    .search-container{
+        border-block-end:none;
+    }
+    .search-container > .m-icon{
+        display:block;
+    }
+    .search-input{
+        height:56px;
+        border-radius: var(--radius-28);
+        border:2px solid var(--outline);
+    }
+    .search .search-details{
+        position:absolute;
+        top:100%;
+        left:0;
+        width:100%;
+        max-height:360px;
+        border-radius: 0 0 var(--radius-28) var(--radius-28);
+        border-block-start:1px solid var(--outline);
+        overflow-y: auto;/*firefox*/
+        overflow-y: overlay;
+    }
+    main{
+        height:calc(100vh-120px);
+        height:calc(100svh-120px);
+    }
+    article.container{
+        grid-template-columns: 360px minmax(0, 1fr);
+        gap:40px;
+    }
+    .current-condition .weather-icon{
+        width:80px;
+    }
+    .highlight-card:nth-child(-n+2){
+        height:200px;
+    }
+    .highlight-card:nth-child(n+3){
+        height:150px;
+    }
+    .highlight-card .m-icon{
+        font-size:4.8rem;
+    }
+    .slider-list{
+        gap:16px;
+    }
+}
+@media screen and (min-width:1400px) {
+    .highlight-list{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (max-width:768px) {
+    body{
+        font-size:1rem;
+    }
+    .container,.card-lg,.card-sm{
+        padding:.5rem;
+    }   
+    .card-sm{
+        display: grid;
+        grid-template-rows: min-content 1fr;
+    }  
+    main{
+        height: calc(100vh -96px);
+        height:calc(100svh - 96px);
+    }
+    .container{
+        padding:1rem 2rem;
+        width:100vw;
+    }
+    .section:not(:last-child){
+        margin-block:20px;
+    }
+    .forecast-card .card-item:not(:last-child){
+        margin-block-end: 16px;
+    }
+    .highlight-list{
+        grid-template-columns: 1fr 1fr;
+    }
+    .highlight-card:nth-child(-n+2){
+        grid-column:span 2;
+        height:160px;
+    }
+    .highlight-card:nth-child(n+3){
+        height:120px;
+    }
+    .highlights .m-icon{
+        font-size:3.6rem;
+    }
+    .highlight-card.one .card-item{
+        width:25%;
+        flex-direction: column-reverse;
+        gap:8px;
+    }
+    .slider-container{
+        margin-inline:0 -24px;
+        border-bottom-left-radius:var(--radius-16);
+        border-top-left-radius:var(--radius-16);
+    }
+    .slider-list::before{
+        display: none;
+    }
+    .slider-list::after{
+        min-width:12px;
+    }
+    .hourly-forecast .card-sm{
+        padding:16px;
+    }
+    .search{
+        all:unset;
+        display:block;
+        position: relative;
+        width:500px;
+        animation:none;
+    }
+     .search-input{
+        height:2rem;
+        border-radius: var(--radius-28);
+        border:2px solid var(--outline);
+    }
+
+    
+}
