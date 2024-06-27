@@ -3,6 +3,8 @@ const toml = require('toml');
 const yaml = require('yamljs');
 const json5 = require('json5');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+
 
 module.exports = {
     mode:'development',
@@ -18,6 +20,7 @@ module.exports = {
           title: 'Weatherly',
           template: './src/index.html'
         }),
+        new Dotenv(),
     ],
     output: {
         filename: '[name].bundle.js',
@@ -27,6 +30,16 @@ module.exports = {
     },
     optimization: {
         runtimeChunk: 'single',
+    },
+    resolve: {
+        fallback: {
+            "path": require.resolve("path-browserify"),
+            "os": require.resolve("os-browserify/browser"),
+            "crypto": require.resolve("crypto-browserify"),
+            "vm": require.resolve("vm-browserify"),
+            "buffer": require.resolve("buffer/"),
+            "stream": require.resolve("stream-browserify")
+        }
     },
     module:{
         rules:[
@@ -73,4 +86,5 @@ module.exports = {
             },
         ],
     },
+      
 };

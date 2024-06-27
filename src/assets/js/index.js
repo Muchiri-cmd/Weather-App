@@ -1,23 +1,35 @@
 import '../css/styles.css'
 const searchInput = document.querySelector('.search-input');
 const searchBtn = document.querySelector('.search-btn')
+const retryBtn = document.querySelector('.home-btn')
 
+let API_KEY = process.env.API_KEY
 
-searchBtn.addEventListener('click', (e)=>{
+searchBtn.addEventListener('click', async(e)=>{
     const searchLocation = searchInput.value;
-    apiCall(searchLocation)
+    await apiCall(searchLocation)
+});
+
+retryBtn.addEventListener('click', (e)=>{
+    document.querySelector('.error').style.display='none';
 });
 
 async function apiCall(location){
     try{
-        const res = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=a96ea307d2b945c9acf54106241806&q=${location || Nyeri}&days=5`,{mode:'cors'})
+        document.querySelector('.loading').style.display = 'block';
+        const res = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location || 'Nairobi'}&days=5`,{mode:'cors'})
         const data = await res.json()
+        document.querySelector('.loading').style.display = 'none';
         //console.log(data)
         renderData(data)
     } catch (err) {
-        console.log(err)
+        document.querySelector('.error').style.display='flex';
+        /*document.querySelector('.err-msg').textContent = err*/
+        document.querySelector('.err-msg').textContent = "Something went wrong. Please try again"
     }
 }
+
+
 function renderData(data){
     document.querySelector('.condition').textContent = data.current.condition.text;
     document.querySelector('.degree').textContent = data.current.temp_c + ' °C';
@@ -88,4 +100,4 @@ function populate3dayForecast(data) {
         }
     });
 }
-apiCall('Nyeri');
+apiCall();
