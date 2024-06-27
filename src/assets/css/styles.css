@@ -487,7 +487,7 @@ article.container{
 
 @media screen and (max-width:768px) {
     body{
-        font-size:1rem;
+        font-size:.8rem;
     }
     .container,.card-lg,.card-sm{
         padding:.5rem;
@@ -501,7 +501,7 @@ article.container{
         height:calc(100svh - 96px);
     }
     .container{
-        padding:1rem 2rem;
+        padding:.5rem 1.5rem;
         width:100vw;
     }
     .section:not(:last-child){
@@ -520,9 +520,7 @@ article.container{
     .highlight-card:nth-child(n+3){
         height:120px;
     }
-    .highlights .m-icon{
-        font-size:3.6rem;
-    }
+
     .highlight-card.one .card-item{
         width:25%;
         flex-direction: column-reverse;
@@ -553,6 +551,9 @@ article.container{
         height:2rem;
         border-radius: var(--radius-28);
         border:2px solid var(--outline);
+    }
+    .logo h1{
+        font-size:.8rem;
     }
 
     
