@@ -17,7 +17,7 @@ retryBtn.addEventListener('click', (e)=>{
 async function apiCall(location){
     try{
         document.querySelector('.loading').style.display = 'block';
-        const res = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location || 'Nairobi'}&days=5`,{mode:'cors'})
+        const res = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location || 'Nairobi'}&days=5`,{mode:'cors'})
         const data = await res.json()
         document.querySelector('.loading').style.display = 'none';
         //console.log(data)
